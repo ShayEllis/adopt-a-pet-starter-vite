@@ -1,4 +1,5 @@
 import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import HomePage from './pages/home';
 import SearchPage from './pages/search';
@@ -8,10 +9,17 @@ import Navigation from './components/navigation';
 
 function App() {
   return (
-    <div>
-      <Navigation />
-      <HomePage />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Navigation />
+      </div>
+      <Routes>
+        <Route path=":type?" element={<HomePage />} />
+        <Route path=":type/:id" element={<PetDetailsPage />} />
+        <Route path="search" element={<SearchPage />} />
+        <Route path='pet-details-not-found' element={<PetDetailsNotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
